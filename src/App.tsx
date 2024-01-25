@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Form from './components/Form'
+import Input from './components/Input'
+import Button from './components/Button'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  function handleSave(data: unknown) {
+    const extractedData = data as { name: string, age: string }
+    console.log(extractedData)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <main>
+      <Form onSave={handleSave}>
+        <Input label='Name' type='text' id='name' />
+        <Input label='Age' type='number' id='age' />
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <Button>Save</Button>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      </Form>
+    </main>
   )
 }
 
