@@ -1,14 +1,16 @@
 import Container from './UI/Container'
 import { type Timer as TimerProps } from '../store/timers-context'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export default function Timer({ name, duration }: TimerProps) {
     const [remainingTime, setRemainingTime] = useState(duration * 1000)
 
-    setInterval(function () {
-        setRemainingTime(prevTime => prevTime - 50)
-     }, 50)
+    useEffect(() => { 
+        setInterval(function () {
+            setRemainingTime(prevTime => prevTime - 50)
+         }, 50)
+    }, [])
 
     return (
         <Container as="article">
